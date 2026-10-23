@@ -1,0 +1,28 @@
+.mat-toolbar {
+  background-color: var(--color-primary);
+  padding: 0 256px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-icons {
+  display: flex;
+  gap: var(--gap-s);
+}
+
+.logo {
+  text-decoration: none;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.logo h1 {
+  font-family: var(--font-title);
+  color: var(--text-primary);
+}
+
+.logo h1 span {
+  font-weight: var(--font-bold);
+}

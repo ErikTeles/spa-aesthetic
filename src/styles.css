@@ -1,1 +1,90 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  /* Colors */
+
+  --color-primary: #f6e2e9;
+  --color-secondary: #fefaf3;
+  --color-tertiary: #b8cfb3;
+  --color-quaternary: #84a282;
+
+  --color-hover: #2a5bb5;
+  --color-click: #002ed0;
+  --color-icon: #7c7b7b;
+  --color-outline: #d7d7d7;
+  --color-divider: #ededed;
+
+  --bg-light: #ffffff;
+  --bg-dark: 248, 248, 248;
+  --bg-disabled: 239, 239, 239;
+
+  --text-primary: #181818;
+  --text-secondary: #f1f1f1;
+  --text-tertiary: #2a2a2a;
+  --text-disabled: #3d3d3d;
+
+  --border-color: #a6a6a6;
+
+  /* Fonts */
+
+  --font-text: 'Poppins', sans-serif;
+  --font-title: 'Dela Gothic One', sans-serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-s: 1rem;
+  --font-size-m: 1.25rem;
+  --font-size-l: 1.5rem;
+  --font-size-xl: 3rem;
+  --font-size-xxl: 4.75rem;
+
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+
+  /* Spacing */
+  --gap-xs: 0.5rem;
+  --gap-s: 1rem; /* 16px */
+  --gap-m: 1.5rem;
+  --gap-l: 2rem;
+  --gap-xl: 3.5rem;
+
+  --padding-xs: 0.5rem;
+  --padding-s: 1rem;
+  --padding-m: 1.5rem;
+  --padding-l: 2rem;
+  --padding-xl: 3.5rem;
+  --padding-xxl: 5rem;
+
+  --margin-xs: 0.5rem;
+  --margin-s: 1rem;
+  --margin-m: 1.5rem;
+  --margin-l: 2rem;
+  --margin-xl: 3rem;
+  --margin-xxl: 6rem;
+
+  --max-width-block: 75rem;
+
+  /* Border Radius */
+  --border-radius-none: 0px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+
+  /* Shadows */
+  --box-shadow-card: 0px 4px 24px 0px #7b7b7b26;
+  --shadow-sm: 0px 0px 10px rgba(132, 132, 132, 15%);
+  --shadow-md: 0px 0px 20px rgba(132, 132, 132, 20%);
+  --shadow-lg: 0px 0px 30px rgba(132, 132, 132, 25%);
+  --shadow-focus: 0px 0px 0px 2px #643296;
+  --shadow-outline: 0px 0px 0px 2px #e8e8e8;
+  --shadow-button-focus: 0px 0px 0px 2px #af4bfe;
+
+  /* Blur */
+  --blur: 4px;
+
+  /* Screens */
+  --screen-mobile: 640px;
+  --screen-tablet: 1024px;
+  --screen-desktop: 1440px;
+  --screen-tv: 1920px;
+}
