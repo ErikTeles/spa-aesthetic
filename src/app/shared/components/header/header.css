@@ -26,3 +26,23 @@
 .logo h1 span {
   font-weight: var(--font-bold);
 }
+
+.cart {
+  position: relative;
+}
+
+.badge {
+  background-color: var(--color-quaternary);
+  color: var(--text-primary);
+  font-weight: var(--font-bold);
+  font-size: var(--font-size-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 20px;
+  bottom: 20px;
+}

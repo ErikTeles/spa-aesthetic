@@ -88,3 +88,9 @@
   --screen-desktop: 1440px;
   --screen-tv: 1920px;
 }
+
+html,
+body {
+  font-family: var(--font-text);
+  font-weight: var(--font-regular);
+}
