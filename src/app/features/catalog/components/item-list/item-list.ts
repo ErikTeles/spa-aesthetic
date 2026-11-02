@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ItemCard } from '../item-card/item-card';
 import { ItemService } from '../../../../shared/services/item-service';
 import { Item } from '../../../../shared/types/item';
+import { CartService } from '../../../../shared/services/cart-service';
 
 @Component({
   selector: 'app-item-list',
@@ -11,11 +12,14 @@ import { Item } from '../../../../shared/types/item';
 })
 export class ItemList implements OnInit {
   private itemService = inject(ItemService);
+  public cartService = inject(CartService);
+
   public items = signal<Item[]>([]);
 
   ngOnInit(): void {
-    this.itemService.getItems().subscribe((itens: Item[]) => {
-      this.items.set(itens);
+    this.itemService.getItems().subscribe({
+      next: (itens: Item[]) => this.items.set(itens),
+      error: (err) => console.error('Falha ao carregar itens', err),
     });
   }
 }

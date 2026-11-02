@@ -1,7 +1,22 @@
 <section class="cart-list">
-  <h2 class="cart-title">Meu Carrinho</h2>
+  <div class="cart-list-header">
+    <h2 class="cart-title">Meu Carrinho</h2>
+
+    @if (cartService.cartItems().length > 0) {
+      <span class="cart-remove-all" (click)="cartService.removeAllItemsFromCart()"
+        >Remover Todos os Itens
+      </span>
+    }
+  </div>
   <hr />
   <div>
-    <app-cart-item-row />
+    @for (cartItem of cartService.cartItems(); track cartItem.item.idItem) {
+      <app-cart-item-row
+        [item]="cartItem"
+        (removeItem)="cartService.removeItemFromCart(cartItem.item)"
+      />
+    } @empty {
+      <span>Seu carrinho está vazio. Explore nossas ofertas!</span>
+    }
   </div>
 </section>

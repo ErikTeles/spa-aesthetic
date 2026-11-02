@@ -1,5 +1,5 @@
 <div class="item-list">
   @for (item of items(); track item.idItem) {
-    <app-item-card [item]="item" />
+    <app-item-card [item]="item" (click)="cartService.addToCart(item)" />
   }
 </div>

@@ -1,20 +1,25 @@
 <div class="cart-item">
   <img src="https://placehold.co/32x32" alt="Produto" class="cart-item-image" />
   <div class="cart-item-info">
-    <div class="cart-item-name">Nome do produto</div>
-    <div class="cart-item-description">Descrição do produto</div>
+    <div class="cart-item-name">{{ item().item.nomeItem }}</div>
+    <div class="cart-item-description">{{ item().item.descricaoItem }}</div>
   </div>
-  <div class="cart-item-price">R$ 22,55</div>
+  <div class="cart-item-price">
+    R$
+    {{
+      (item().item.tipoItem === 'S' ? item().item.preco : item().item.precoVenda) | number: '1.2-2'
+    }}
+  </div>
   <div class="cart-item-quantity">
     <span>Quantidade:</span>
     <div class="cart-item-quantity-actions">
       <img src="icons/minus.svg" />
-      <span>1</span>
+      <span>{{ item().quantity }}</span>
       <img src="icons/plus.svg" />
     </div>
   </div>
   <div class="cart-item-delete">
     <span>Excluir</span>
-    <img src="/icons/delete.svg" />
+    <img src="/icons/delete.svg" (click)="removeItem.emit()" />
   </div>
 </div>

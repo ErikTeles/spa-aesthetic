@@ -9,7 +9,9 @@
         <a routerLink="/carrinho"
           ><img src="icons/shopping-cart.png" alt="Carrinho de compras"
         /></a>
-        <span class="badge">{{ cartItemsCount }}</span>
+        @if (cartService.cartItemsCount() > 0) {
+          <span class="badge">{{ cartService.cartItemsCount() }}</span>
+        }
       </div>
 
       <div>
