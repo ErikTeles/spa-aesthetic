@@ -1,0 +1,22 @@
+.cart-title {
+  font-style: var(--font-title);
+  font-size: var(--font-size-l);
+  font-weight: var(--font-bold);
+}
+
+.cart-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-remove-all {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-medium);
+  color: #ff5b5b;
+  cursor: pointer;
+}
+
+.cart-remove-all:hover {
+  color: #ff8787;
+}

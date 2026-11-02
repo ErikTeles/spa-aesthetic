@@ -1,0 +1,9 @@
+<div class="item-card">
+  <img class="item-image" src="https://placehold.co/320x320" alt="Foto do item" />
+  <div class="item-info">
+    <span class="item-name">{{ item.nomeItem }}</span>
+    <span class="item-price"
+      >R$ {{ (item.tipoItem === 'S' ? item.preco : item.precoVenda) | number: '1.2-2' }}</span
+    >
+  </div>
+</div>
