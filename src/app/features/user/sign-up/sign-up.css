@@ -1,0 +1,19 @@
+.form-title {
+  text-align: center;
+  font-size: var(--font-size-m);
+  font-weight: var(--font-medium);
+}
+
+.form-card {
+  padding: var(--padding-l);
+  margin: 0 480px;
+  background-color: var(--color-secondary);
+  display: flex;
+  gap: var(--gap-m);
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+}

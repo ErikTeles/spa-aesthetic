@@ -1,0 +1,116 @@
+<mat-card class="form-card">
+  <h2 class="form-title">Cadastre-se e comece a usar nossos serviços</h2>
+
+  <section class="person-data">
+    <form [formGroup]="formPessoa">
+      <h3>Dados Pessoais</h3>
+
+      <hr />
+
+      <div class="form-fields">
+        <mat-form-field>
+          <mat-label>Insira o seu Nome</mat-label>
+          <input matInput placeholder="Fulano da Silva" formControlName="nome" required />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Insira o seu CPF</mat-label>
+          <input
+            matInput
+            appCpfMask
+            placeholder="000.000.000-00"
+            formControlName="cpf"
+            inputmode="numeric"
+            maxlength="14"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Data de Nascimento</mat-label>
+          <input
+            matInput
+            placeholder="31/12/1990"
+            [matDatepicker]="datePicker"
+            formControlName="dataNascimento"
+          />
+          <mat-hint>DD/MM/AAAA</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Sexo</mat-label>
+          <mat-select formControlName="sexo">
+            <mat-option value="" disabled>Selecione</mat-option>
+            <mat-option value="M">Masculino</mat-option>
+            <mat-option value="F">Feminino</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Insira o seu E-mail</mat-label>
+          <input matInput placeholder="fulano@email.com" formControlName="email" required />
+          @if (formPessoa.get('email')?.invalid && formPessoa.get('email')?.touched) {
+            <mat-error>E-mail Inválido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Insira o seu Celular</mat-label>
+          <input
+            matInput
+            appCelularMask
+            placeholder="(00) 00000-0000"
+            formControlName="telefone"
+            inputmode="numeric"
+            maxlength="15"
+            required
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </section>
+
+  <form [formGroup]="formEndereco">
+    <section class="address-data">
+      <h3>Dados de Endereço</h3>
+
+      <hr />
+
+      <div class="form-fields">
+        <mat-form-field>
+          <mat-label>Insira o seu CEP</mat-label>
+          <input appCepMask matInput placeholder="00000-000" formControlName="cep" required />
+          @if (formEndereco.get('cep')?.invalid && formEndereco.get('cep')?.touched) {
+            <mat-error>CEP Inválido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Insira o Número</mat-label>
+          <input matInput placeholder="123" formControlName="numero" required />
+          @if (formEndereco.get('numero')?.invalid && formEndereco.get('numero')?.touched) {
+            <mat-error>Número Inválido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Insira o Complemento</mat-label>
+          <input matInput placeholder="Ao lado da barbearia" formControlName="complemento" />
+        </mat-form-field>
+      </div>
+    </section>
+  </form>
+
+  <mat-card-actions>
+    <button matButton="tonal">Limpar</button>
+    <button
+      matButton="filled"
+      [disabled]="formPessoa.invalid || formEndereco.invalid"
+      (click)="onSubmit()"
+    >
+      Enviar
+    </button>
+  </mat-card-actions>
+</mat-card>
