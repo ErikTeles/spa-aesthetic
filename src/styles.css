@@ -12,7 +12,7 @@
   --color-click: #002ed0;
   --color-icon: #7c7b7b;
   --color-outline: #d7d7d7;
-  --color-divider: #ededed;
+  --color-divider: #b8cfb3;
 
   --bg-light: #ffffff;
   --bg-dark: 248, 248, 248;
@@ -66,9 +66,9 @@
 
   /* Border Radius */
   --border-radius-none: 0px;
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 16px;
+  --border-radius-s: 4px;
+  --border-radius-m: 8px;
+  --border-radius-l: 16px;
 
   /* Shadows */
   --box-shadow-card: 0px 4px 24px 0px #7b7b7b26;

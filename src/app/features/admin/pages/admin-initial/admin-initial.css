@@ -1,0 +1,12 @@
+.panel {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.panel-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-bold);
+}
