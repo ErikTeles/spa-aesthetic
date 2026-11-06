@@ -20,7 +20,7 @@ export class AdminClientes implements OnInit {
   private readonly dialog = inject(MatDialog);
 
   readonly clients = signal<Pessoa[]>([]);
-  readonly displayedColumns = ['nome', 'email', 'actions'];
+  readonly displayedColumns = ['cpf', 'nome', 'email', 'actions'];
 
   ngOnInit(): void {
     this.carregarClientes();

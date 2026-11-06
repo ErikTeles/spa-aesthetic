@@ -3,8 +3,11 @@ import { Catalog } from './features/catalog/pages/catalog/catalog';
 import { Cart } from './features/cart/pages/cart/cart';
 import { SignUp } from './features/user/sign-up/sign-up';
 import { AdminLayout } from './features/admin/components/admin-layout/admin-layout';
+import { AdminCategorias } from './features/admin/pages/admin-categorias/admin-categorias';
 import { AdminClientes } from './features/admin/pages/admin-clientes/admin-clientes';
+import { AdminFuncionarios } from './features/admin/pages/admin-funcionarios/admin-funcionarios';
 import { AdminInitial } from './features/admin/pages/admin-initial/admin-initial';
+import { AdminProdutos } from './features/admin/pages/admin-produtos/admin-produtos';
 
 export const routes: Routes = [
   {
@@ -26,9 +29,9 @@ export const routes: Routes = [
     children: [
       { path: '', component: AdminInitial },
       { path: 'clientes', component: AdminClientes },
-      // { path: 'funcionarios', component: AdminFuncionarios },
-      // { path: 'categorias', component: AdminCategorias },
-      // { path: 'produtos', component: AdminItens, data: { tipo: 'P' } },
+      { path: 'funcionarios', component: AdminFuncionarios },
+      { path: 'categorias', component: AdminCategorias },
+      { path: 'produtos', component: AdminProdutos },
       // { path: 'servicos', component: AdminItens, data: { tipo: 'S' } },
       // { path: 'pedidos', component: AdminPedidos },
       // { path: 'entrada-produtos', component: AdminEntradaProdutos },

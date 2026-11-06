@@ -1,0 +1,49 @@
+<table mat-table [dataSource]="produtos()" class="">
+  <ng-container matColumnDef="nomeItem">
+    <th mat-header-cell *matHeaderCellDef>Nome</th>
+    <td mat-cell *matCellDef="let produto">{{ produto.nomeItem }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="categoria">
+    <th mat-header-cell *matHeaderCellDef>Categoria</th>
+    <td mat-cell *matCellDef="let produto">{{ produto.categoria?.descricao }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="precoVenda">
+    <th mat-header-cell *matHeaderCellDef>Preço de Venda</th>
+    <td mat-cell *matCellDef="let produto">
+      R$ {{ produto.precoVenda | number: '1.2-2' }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantidadeEstoque">
+    <th mat-header-cell *matHeaderCellDef>Estoque</th>
+    <td mat-cell *matCellDef="let produto">{{ produto.quantidadeEstoque }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="ativo">
+    <th mat-header-cell *matHeaderCellDef>Ativo</th>
+    <td mat-cell *matCellDef="let produto">{{ produto.ativo ? 'Sim' : 'Não' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Ações</th>
+    <td mat-cell *matCellDef="let produto">
+      <button matIconButton aria-label="Editar produto" (click)="openEditDialog(produto)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button matIconButton aria-label="Excluir produto" (click)="excluirProduto(produto)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<div class="fab-container">
+  <button matFab aria-label="Novo produto" (click)="openCreateDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,6 @@
+.fab-container {
+  position: fixed;
+  right: var(--margin-xl);
+  bottom: var(--margin-l);
+  z-index: 1;
+}

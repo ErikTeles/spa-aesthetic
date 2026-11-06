@@ -1,0 +1,7 @@
+.form-fields {
+  padding-top: var(--padding-xs);
+}
+
+.form-fields mat-form-field {
+  width: 100%;
+}
