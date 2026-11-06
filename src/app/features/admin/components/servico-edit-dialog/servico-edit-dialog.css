@@ -1,0 +1,25 @@
+.form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap-s);
+  padding-top: var(--padding-xs);
+}
+
+.form-fields mat-form-field {
+  width: 100%;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .form-fields {
+    grid-template-columns: 1fr;
+  }
+}

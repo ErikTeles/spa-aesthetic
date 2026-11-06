@@ -8,6 +8,7 @@ import { AdminClientes } from './features/admin/pages/admin-clientes/admin-clien
 import { AdminFuncionarios } from './features/admin/pages/admin-funcionarios/admin-funcionarios';
 import { AdminInitial } from './features/admin/pages/admin-initial/admin-initial';
 import { AdminProdutos } from './features/admin/pages/admin-produtos/admin-produtos';
+import { AdminServicos } from './features/admin/pages/admin-servicos/admin-servicos';
 
 export const routes: Routes = [
   {
@@ -32,7 +33,7 @@ export const routes: Routes = [
       { path: 'funcionarios', component: AdminFuncionarios },
       { path: 'categorias', component: AdminCategorias },
       { path: 'produtos', component: AdminProdutos },
-      // { path: 'servicos', component: AdminItens, data: { tipo: 'S' } },
+      { path: 'servicos', component: AdminServicos },
       // { path: 'pedidos', component: AdminPedidos },
       // { path: 'entrada-produtos', component: AdminEntradaProdutos },
       // { path: 'estoque', component: AdminEstoque },
