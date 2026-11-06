@@ -5,7 +5,7 @@
       @for (item of menuItems; track item.link) {
         <a
           [routerLink]="item.link"
-          routerLinkActive="activate"
+          routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: item.link === '/admin' }"
         >
           <span>{{ item.icone }}</span> {{ item.nome }}

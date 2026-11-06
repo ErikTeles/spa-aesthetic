@@ -1,18 +1,17 @@
 .container {
-  display: flex;
-  gap: var(--gap-l);
+  display: grid;
+  grid-template-columns: 240px 1fr;
   margin: var(--margin-l) var(--margin-xl);
-  align-items: center;
+  flex: 1;
+  gap: var(--gap-l);
 }
 
 .menu {
   background-color: var(--color-secondary);
-  border-radius: var(--border-radius-s);
+  border-radius: var(--border-radius-m);
   box-shadow: var(--box-shadow-card);
   padding: var(--padding-m) var(--padding-s);
   position: sticky;
-  top: 100px;
-  width: 240px;
 }
 
 .menu h3 {
@@ -37,7 +36,6 @@
   padding: var(--padding-xs) var(--padding-s);
   text-decoration: none;
   color: var(--text-primary);
-  font-family: var(--font-text);
   font-weight: var(--font-medium);
   border-radius: var(--border-radius-s);
 }
