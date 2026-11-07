@@ -17,6 +17,5 @@ export class AdminLayout {
     { link: '/admin/servicos', icone: '💆', nome: 'Serviços' },
     { link: '/admin/pedidos', icone: '📋', nome: 'Pedidos' },
     { link: '/admin/entrada-produtos', icone: '📦', nome: 'Entrada de produtos' },
-    { link: '/admin/estoque', icone: '🗃️', nome: 'Estoque' },
   ];
 }

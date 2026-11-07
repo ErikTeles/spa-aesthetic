@@ -1,0 +1,49 @@
+<table mat-table [dataSource]="entradas()" class="">
+  <ng-container matColumnDef="idEntradaProduto">
+    <th mat-header-cell *matHeaderCellDef>Entrada</th>
+    <td mat-cell *matCellDef="let entrada">#{{ entrada.idEntradaProduto }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="produto">
+    <th mat-header-cell *matHeaderCellDef>Produto</th>
+    <td mat-cell *matCellDef="let entrada">{{ nomeProduto(entrada) }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dataEntradaProduto">
+    <th mat-header-cell *matHeaderCellDef>Data</th>
+    <td mat-cell *matCellDef="let entrada">
+      {{ formatarData(entrada.dataEntradaProduto) }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantidadeEntrada">
+    <th mat-header-cell *matHeaderCellDef>Quantidade</th>
+    <td mat-cell *matCellDef="let entrada">{{ entrada.quantidadeEntrada }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="unidade">
+    <th mat-header-cell *matHeaderCellDef>Unidade</th>
+    <td mat-cell *matCellDef="let entrada">{{ entrada.unidade }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="valorUnitarioEntrada">
+    <th mat-header-cell *matHeaderCellDef>Valor unitário</th>
+    <td mat-cell *matCellDef="let entrada">
+      R$ {{ entrada.valorUnitarioEntrada | number: '1.2-2' }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="valorTotal">
+    <th mat-header-cell *matHeaderCellDef>Total</th>
+    <td mat-cell *matCellDef="let entrada">R$ {{ totalEntrada(entrada) | number: '1.2-2' }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<div class="fab-container">
+  <button matFab aria-label="Nova entrada de produto" (click)="openCreateDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

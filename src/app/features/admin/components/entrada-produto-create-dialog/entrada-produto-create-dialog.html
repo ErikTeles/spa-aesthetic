@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>Nova entrada de produto</h2>
+
+<form [formGroup]="formEntrada" (ngSubmit)="salvar()">
+  <mat-dialog-content class="mat-typography">
+    <div class="form-fields">
+      <mat-form-field class="full-width">
+        <mat-label>Produto</mat-label>
+        <mat-select formControlName="idItem" (selectionChange)="onProdutoSelecionado()" required>
+          @for (produto of produtos(); track produto.idItem) {
+            <mat-option [value]="produto.idItem ?? null">
+              {{ produto.nomeItem }} ({{ produto.unidade }}) - estoque:
+              {{ produto.quantidadeEstoque }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data da entrada</mat-label>
+        <input matInput type="datetime-local" formControlName="dataEntradaProduto" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Quantidade</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0.01"
+          step="0.01"
+          placeholder="0,00"
+          formControlName="quantidadeEntrada"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Unidade</mat-label>
+        <input matInput placeholder="UN, ml, g" formControlName="unidade" maxlength="10" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Valor unitário</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="0,00"
+          formControlName="valorUnitarioEntrada"
+          required
+        />
+      </mat-form-field>
+
+      <p class="form-hint full-width">
+        Ao salvar, o estoque e os preços do produto serão atualizados automaticamente.
+      </p>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button matButton type="button" mat-dialog-close [disabled]="salvando()">Cancelar</button>
+    <button matButton="filled" type="submit" [disabled]="formEntrada.invalid || salvando()">
+      Salvar
+    </button>
+  </mat-dialog-actions>
+</form>

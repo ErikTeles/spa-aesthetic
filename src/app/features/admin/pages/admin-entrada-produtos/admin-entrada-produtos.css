@@ -1,0 +1,10 @@
+:host {
+  --mat-table-row-item-container-height: 56px;
+}
+
+.fab-container {
+  position: fixed;
+  right: var(--margin-xl);
+  bottom: var(--margin-l);
+  z-index: 1;
+}

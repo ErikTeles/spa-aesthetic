@@ -5,6 +5,7 @@ import { SignUp } from './features/user/sign-up/sign-up';
 import { AdminLayout } from './features/admin/components/admin-layout/admin-layout';
 import { AdminCategorias } from './features/admin/pages/admin-categorias/admin-categorias';
 import { AdminClientes } from './features/admin/pages/admin-clientes/admin-clientes';
+import { AdminEntradaProdutos } from './features/admin/pages/admin-entrada-produtos/admin-entrada-produtos';
 import { AdminFuncionarios } from './features/admin/pages/admin-funcionarios/admin-funcionarios';
 import { AdminInitial } from './features/admin/pages/admin-initial/admin-initial';
 import { AdminPedidos } from './features/admin/pages/admin-pedidos/admin-pedidos';
@@ -36,8 +37,7 @@ export const routes: Routes = [
       { path: 'produtos', component: AdminProdutos },
       { path: 'servicos', component: AdminServicos },
       { path: 'pedidos', component: AdminPedidos },
-      // { path: 'entrada-produtos', component: AdminEntradaProdutos },
-      // { path: 'estoque', component: AdminEstoque },
+      { path: 'entrada-produtos', component: AdminEntradaProdutos },
       { path: '**', redirectTo: '' },
     ],
   },
