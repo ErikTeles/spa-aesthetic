@@ -1,0 +1,20 @@
+<div class="container">
+  <aside class="menu">
+    <h3>Administração</h3>
+    <nav>
+      @for (item of menuItems; track item.link) {
+        <a
+          [routerLink]="item.link"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.link === '/admin' }"
+        >
+          <span>{{ item.icone }}</span> {{ item.nome }}
+        </a>
+      }
+    </nav>
+  </aside>
+
+  <section>
+    <router-outlet />
+  </section>
+</div>

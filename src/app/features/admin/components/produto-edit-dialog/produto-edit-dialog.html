@@ -1,0 +1,92 @@
+<h2 mat-dialog-title>{{ editando ? 'Editar produto' : 'Novo produto' }}</h2>
+
+<form [formGroup]="formProduto" (ngSubmit)="salvar()">
+  <mat-dialog-content class="mat-typography">
+    <div class="form-fields">
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          placeholder="Creme hidratante"
+          formControlName="nomeItem"
+          maxlength="40"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="idCategoria" required>
+          <mat-option value="" disabled>Selecione</mat-option>
+          @for (categoria of categorias(); track categoria.idCategoria) {
+            <mat-option [value]="categoria.idCategoria">{{ categoria.descricao }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Descrição</mat-label>
+        <textarea
+          matInput
+          placeholder="Descrição do produto"
+          formControlName="descricaoItem"
+          maxlength="200"
+          rows="3"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Preço</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="0,00"
+          formControlName="preco"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Preço de Venda</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="0,00"
+          formControlName="precoVenda"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Código de Preço</mat-label>
+        <input matInput type="number" min="0" step="1" formControlName="codigoPreco" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Unidade</mat-label>
+        <input
+          matInput
+          placeholder="un, ml, g"
+          formControlName="unidade"
+          maxlength="10"
+          required
+        />
+      </mat-form-field>
+
+      <div class="full-width checkbox-field">
+        <mat-checkbox formControlName="ativo">Produto ativo</mat-checkbox>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button matButton type="button" mat-dialog-close [disabled]="salvando()">Cancelar</button>
+    <button matButton="filled" type="submit" [disabled]="formProduto.invalid || salvando()">
+      Salvar
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,51 @@
+.container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  margin: var(--margin-l) var(--margin-xl);
+  flex: 1;
+  gap: var(--gap-l);
+}
+
+.menu {
+  background-color: var(--color-secondary);
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--box-shadow-card);
+  padding: var(--padding-m) var(--padding-s);
+  position: sticky;
+}
+
+.menu h3 {
+  font-family: var(--font-title);
+  font-size: var(--font-size-l);
+  font-weight: var(--font-medium);
+  padding: var(--padding-xs) var(--padding-s);
+  border-bottom: 1px solid var(--color-divider);
+  margin-bottom: var(--margin-s);
+}
+
+.menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-s);
+  padding: var(--padding-xs) var(--padding-s);
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: var(--font-medium);
+  border-radius: var(--border-radius-s);
+}
+
+.menu a:hover {
+  background-color: var(--color-tertiary);
+  color: var(--text-secondary);
+}
+
+.menu a.active {
+  background-color: var(--color-quaternary);
+  color: var(--text-secondary);
+}
