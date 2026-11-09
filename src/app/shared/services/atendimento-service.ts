@@ -7,6 +7,7 @@ import {
   AtendimentoItem,
   AtendimentoItemRequest,
   AtendimentoRequest,
+  PedidoCliente,
 } from '../types/atendimento';
 import { CheckoutRequest } from '../types/checkout';
 
@@ -23,6 +24,10 @@ export class AtendimentoService {
 
   getAtendimentoById(idAtendimento: number): Observable<Atendimento> {
     return this.http.get<Atendimento>(`${this.apiUrl}/Atendimento/${idAtendimento}`);
+  }
+
+  getPedidosPorPessoa(idPessoa: number): Observable<PedidoCliente[]> {
+    return this.http.get<PedidoCliente[]>(`${this.apiUrl}/Atendimento/Pessoa/${idPessoa}`);
   }
 
   createAtendimento(atendimento: AtendimentoRequest): Observable<Atendimento> {

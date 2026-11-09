@@ -7,7 +7,26 @@
 
 .nav-icons {
   display: flex;
+  align-items: center;
   gap: var(--gap-s);
+}
+
+.nav-link {
+  font-size: var(--font-size-s);
+  font-weight: var(--font-medium);
+  color: var(--text-tertiary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--color-quaternary);
+}
+
+.nav-link:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--border-radius-s);
 }
 
 .logo {

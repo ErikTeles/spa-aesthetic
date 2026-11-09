@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Pessoa } from '../types/pessoa';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,16 @@ export class PessoaService {
 
   getAllPessoas(): Observable<Pessoa[]> {
     return this.http.get<Pessoa[]>(`${this.apiUrl}/Pessoa`);
+  }
+
+  findByCpf(cpf: string): Observable<Pessoa | undefined> {
+    const digits = cpf.replace(/\D/g, '');
+
+    return this.getAllPessoas().pipe(
+      map((pessoas) =>
+        pessoas.find((pessoa) => pessoa.cpf.replace(/\D/g, '') === digits),
+      ),
+    );
   }
 
   createPessoa(pessoa: Pessoa): Observable<Pessoa> {

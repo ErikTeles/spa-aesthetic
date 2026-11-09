@@ -1,0 +1,83 @@
+<section class="my-orders">
+  <h1 class="my-orders-title">Meus pedidos</h1>
+
+  @if (customer(); as pessoa) {
+    <div class="customer-bar">
+      <div class="customer-info">
+        <span class="customer-name">{{ pessoa.nome }}</span>
+        <span class="customer-document">CPF {{ formatCpf(pessoa.cpf) }}</span>
+      </div>
+      <button matButton type="button" (click)="trocarCliente()">Trocar</button>
+    </div>
+
+    @if (carregando()) {
+      <p class="state-message">Carregando seus pedidos...</p>
+    } @else if (erro()) {
+      <div class="state-message state-error">
+        <p>{{ erro() }}</p>
+        <button matButton="filled" type="button" (click)="recarregar()">Tentar novamente</button>
+      </div>
+    } @else if (pedidos().length === 0) {
+      <div class="state-message">
+        <p>Você ainda não fez pedidos.</p>
+        <a matButton="filled" routerLink="/">Explorar catálogo</a>
+      </div>
+    } @else {
+      <ul class="orders-list">
+        @for (pedido of pedidos(); track pedido.idAtendimento) {
+          <li class="order-card">
+            <div class="order-info">
+              <div class="order-heading">
+                <span class="order-id">Pedido #{{ pedido.idAtendimento }}</span>
+                <span
+                  class="order-status"
+                  [class.order-status-open]="pedido.statusAtendimento === 'A'"
+                >
+                  {{ statusLabel(pedido) }}
+                </span>
+              </div>
+              <span class="order-date">{{ formatarData(pedido.dataAtendimento) }}</span>
+            </div>
+
+            <div class="order-metrics">
+              <span>{{ itensLabel(pedido) }}</span>
+              <span class="order-total">R$ {{ totalPedido(pedido) | number: '1.2-2' }}</span>
+            </div>
+
+            <button matButton="filled" type="button" (click)="openDetalhes(pedido)">
+              Ver detalhes
+            </button>
+          </li>
+        }
+      </ul>
+    }
+  } @else {
+    <div class="identify-card">
+      <h2>Identifique-se</h2>
+      <p>Informe seu CPF para consultar seus pedidos.</p>
+
+      <form [formGroup]="formIdentificacao" (ngSubmit)="buscarCliente()" class="identify-form">
+        <mat-form-field>
+          <mat-label>CPF</mat-label>
+          <input
+            matInput
+            appCpfMask
+            placeholder="000.000.000-00"
+            formControlName="cpf"
+            inputmode="numeric"
+            maxlength="14"
+            required
+          />
+        </mat-form-field>
+
+        <button matButton="filled" type="submit" [disabled]="buscandoCpf()">
+          {{ buscandoCpf() ? 'Buscando...' : 'Buscar' }}
+        </button>
+      </form>
+
+      <p class="identify-hint">
+        Ainda não tem cadastro? <a routerLink="/cadastro">Cadastre-se</a>
+      </p>
+    </div>
+  }
+</section>

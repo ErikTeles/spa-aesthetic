@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Pedido #{{ pedido.idAtendimento }}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <dl class="order-meta">
+    <div>
+      <dt>Data</dt>
+      <dd>{{ formatarData(pedido.dataAtendimento) }}</dd>
+    </div>
+    <div>
+      <dt>Status</dt>
+      <dd>{{ statusLabel() }}</dd>
+    </div>
+    <div>
+      <dt>Itens</dt>
+      <dd>{{ pedido.itens.length }}</dd>
+    </div>
+  </dl>
+
+  <table class="order-items">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Profissional</th>
+        <th>Qtd.</th>
+        <th>Valor un.</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of pedido.itens; track item.idItem) {
+        <tr>
+          <td>{{ item.nomeItem }}</td>
+          <td>{{ item.funcionario }}</td>
+          <td>{{ item.quantidadeItens }}</td>
+          <td>R$ {{ item.valorUnitarioEntrada | number: '1.2-2' }}</td>
+          <td>R$ {{ totalItem(item) | number: '1.2-2' }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5" class="order-items-empty">Este pedido não possui itens.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <p class="order-total">
+    <span>Total</span>
+    <strong>R$ {{ totalPedido() | number: '1.2-2' }}</strong>
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button matButton="filled" type="button" mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

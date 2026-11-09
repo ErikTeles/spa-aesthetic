@@ -25,3 +25,19 @@ export interface AtendimentoItemRequest {
   quantidadeItens: number;
   valorUnitarioEntrada?: number | null;
 }
+
+export interface PedidoClienteItem {
+  idItem: number;
+  nomeItem: string;
+  idFuncionario: number;
+  funcionario: string;
+  quantidadeItens: number;
+  valorUnitarioEntrada: number;
+}
+
+export interface PedidoCliente {
+  idAtendimento: number;
+  dataAtendimento: string;
+  statusAtendimento: string;
+  itens: PedidoClienteItem[];
+}

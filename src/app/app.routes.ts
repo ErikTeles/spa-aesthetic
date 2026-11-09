@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Catalog } from './features/catalog/pages/catalog/catalog';
 import { Cart } from './features/cart/pages/cart/cart';
+import { MyOrders } from './features/orders/pages/my-orders/my-orders';
 import { SignUp } from './features/user/sign-up/sign-up';
 import { AdminLayout } from './features/admin/components/admin-layout/admin-layout';
 import { AdminCategorias } from './features/admin/pages/admin-categorias/admin-categorias';
@@ -25,6 +26,10 @@ export const routes: Routes = [
   {
     path: 'cadastro',
     component: SignUp,
+  },
+  {
+    path: 'meus-pedidos',
+    component: MyOrders,
   },
   {
     path: 'admin',

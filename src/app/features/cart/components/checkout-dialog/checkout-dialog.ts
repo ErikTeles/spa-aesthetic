@@ -69,11 +69,9 @@ export class CheckoutDialog {
 
     this.identificando.set(true);
 
-    this.pessoaService.getAllPessoas().subscribe({
-      next: (pessoas) => {
+    this.pessoaService.findByCpf(cpf).subscribe({
+      next: (pessoa) => {
         this.identificando.set(false);
-
-        const pessoa = pessoas.find((p) => this.onlyDigits(p.cpf) === cpf);
 
         if (!pessoa) {
           this.messageService.openMessage(
