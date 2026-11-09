@@ -15,6 +15,10 @@ export class PessoaService {
     return this.http.get<Pessoa[]>(`${this.apiUrl}/Pessoa`);
   }
 
+  getPessoaById(idPessoa: number): Observable<Pessoa> {
+    return this.http.get<Pessoa>(`${this.apiUrl}/Pessoa/${idPessoa}`);
+  }
+
   findByCpf(cpf: string): Observable<Pessoa | undefined> {
     const digits = cpf.replace(/\D/g, '');
 

@@ -1,0 +1,22 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-s);
+  margin-bottom: var(--margin-s);
+}
+
+.search-field {
+  width: 220px;
+}
+
+.search-info {
+  margin-bottom: var(--margin-s);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-s);
+}
+
+.empty-state {
+  padding: var(--padding-m);
+  text-align: center;
+  color: var(--text-tertiary);
+}
