@@ -1,5 +1,24 @@
-<div class="item-list">
-  @for (item of items(); track item.idItem) {
-    <app-item-card [item]="item" />
+<app-item-filter [categorias]="categorias()" (filtersChange)="atualizarFiltros($event)" />
+
+@if (carregando()) {
+  <p class="list-status">Carregando catálogo...</p>
+} @else if (erro()) {
+  <p class="list-status">Não foi possível carregar o catálogo.</p>
+} @else {
+  <p class="list-status result-count">
+    {{ itensFiltrados().length }}
+    {{ itensFiltrados().length === 1 ? 'item encontrado' : 'itens encontrados' }}
+  </p>
+
+  @if (itensFiltrados().length > 0) {
+    <div class="item-list">
+      @for (item of itensFiltrados(); track item.idItem) {
+        <app-item-card [item]="item" />
+      }
+    </div>
+  } @else {
+    <p class="list-status empty-state">
+      Nenhum produto ou serviço encontrado para os filtros selecionados.
+    </p>
   }
-</div>
+}

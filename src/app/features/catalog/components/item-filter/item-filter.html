@@ -1,0 +1,37 @@
+<form class="item-filter" [formGroup]="formFiltro" role="search" (submit)="$event.preventDefault()">
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="search-field">
+    <mat-label>Pesquisar por nome</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input
+      matInput
+      type="search"
+      formControlName="nome"
+      placeholder="Ex.: creme hidratante"
+      autocomplete="off"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="filter-field">
+    <mat-label>Categoria</mat-label>
+    <mat-select formControlName="idCategoria">
+      <mat-option [value]="null">Todas as categorias</mat-option>
+      @for (categoria of categorias(); track categoria.idCategoria) {
+        <mat-option [value]="categoria.idCategoria">{{ categoria.descricao }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="filter-field">
+    <mat-label>Tipo</mat-label>
+    <mat-select formControlName="tipoItem">
+      <mat-option value="todos">Todos</mat-option>
+      <mat-option value="P">Produtos</mat-option>
+      <mat-option value="S">Serviços</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button matButton="tonal" type="button" class="clear-button" (click)="limparFiltros()">
+    <mat-icon>filter_alt_off</mat-icon>
+    Limpar filtros
+  </button>
+</form>

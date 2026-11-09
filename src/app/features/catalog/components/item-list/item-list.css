@@ -5,3 +5,18 @@
   margin: 0 var(--margin-m);
   gap: var(--gap-m);
 }
+
+.list-status {
+  margin: 0 var(--margin-m) var(--margin-s);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-s);
+}
+
+.result-count {
+  font-weight: var(--font-medium);
+}
+
+.empty-state {
+  padding: var(--padding-l);
+  text-align: center;
+}
