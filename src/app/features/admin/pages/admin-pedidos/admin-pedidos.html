@@ -1,4 +1,24 @@
-<table mat-table [dataSource]="atendimentos()" class="">
+<div class="situacao-filter" role="group" aria-label="Filtrar pedidos por situação">
+  <button
+    type="button"
+    [matButton]="situacaoAtiva() === 'todas' ? 'filled' : 'outlined'"
+    (click)="selecionarSituacao('todas')"
+  >
+    Todos
+  </button>
+
+  @for (situacao of situacoes(); track situacao) {
+    <button
+      type="button"
+      [matButton]="situacaoAtiva() === situacao ? 'filled' : 'outlined'"
+      (click)="selecionarSituacao(situacao)"
+    >
+      {{ situacaoLabel(situacao) }}
+    </button>
+  }
+</div>
+
+<table mat-table [dataSource]="atendimentosFiltrados()" class="">
   <ng-container matColumnDef="idAtendimento">
     <th mat-header-cell *matHeaderCellDef>Pedido</th>
     <td mat-cell *matCellDef="let atendimento">#{{ atendimento.idAtendimento }}</td>
@@ -18,7 +38,9 @@
 
   <ng-container matColumnDef="statusAtendimento">
     <th mat-header-cell *matHeaderCellDef>Status</th>
-    <td mat-cell *matCellDef="let atendimento">{{ atendimento.statusAtendimento }}</td>
+    <td mat-cell *matCellDef="let atendimento">
+      {{ statusLabel(atendimento.statusAtendimento) }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="quantidadeItens">
@@ -48,6 +70,16 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+@if (atendimentosFiltrados().length === 0) {
+  <p class="empty-state">
+    @if (atendimentos().length === 0) {
+      Nenhum pedido cadastrado.
+    } @else {
+      Nenhum pedido encontrado para a situação selecionada.
+    }
+  </p>
+}
 
 <div class="fab-container">
   <button matFab aria-label="Novo pedido" (click)="openCreateDialog()">

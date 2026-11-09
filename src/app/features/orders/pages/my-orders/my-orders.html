@@ -31,7 +31,7 @@
                 <span class="order-id">Pedido #{{ pedido.idAtendimento }}</span>
                 <span
                   class="order-status"
-                  [class.order-status-open]="pedido.statusAtendimento === 'A'"
+                  [class.order-status-open]="statusEmAberto(pedido)"
                 >
                   {{ statusLabel(pedido) }}
                 </span>

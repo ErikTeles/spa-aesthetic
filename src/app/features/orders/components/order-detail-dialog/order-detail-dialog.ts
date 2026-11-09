@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { PedidoCliente, PedidoClienteItem } from '../../../../shared/types/atendimento';
+import { statusAtendimentoLabel } from '../../../../shared/utils/atendimento-status';
 
 export interface OrderDetailDialogData {
   pedido: PedidoCliente;
@@ -32,8 +33,6 @@ export class OrderDetailDialog {
   }
 
   statusLabel(): string {
-    return this.pedido.statusAtendimento === 'A'
-      ? 'Em aberto'
-      : this.pedido.statusAtendimento;
+    return statusAtendimentoLabel(this.pedido.statusAtendimento);
   }
 }

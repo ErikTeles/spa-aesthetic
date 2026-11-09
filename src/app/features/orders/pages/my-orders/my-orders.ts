@@ -13,6 +13,10 @@ import { MessageService } from '../../../../shared/services/message-service';
 import { PessoaService } from '../../../../shared/services/pessoa-service';
 import { PedidoCliente } from '../../../../shared/types/atendimento';
 import {
+  statusAtendimentoEmAberto,
+  statusAtendimentoLabel,
+} from '../../../../shared/utils/atendimento-status';
+import {
   OrderDetailDialog,
   OrderDetailDialogData,
 } from '../../components/order-detail-dialog/order-detail-dialog';
@@ -136,7 +140,11 @@ export class MyOrders implements OnInit {
   }
 
   statusLabel(pedido: PedidoCliente): string {
-    return pedido.statusAtendimento === 'A' ? 'Em aberto' : pedido.statusAtendimento;
+    return statusAtendimentoLabel(pedido.statusAtendimento);
+  }
+
+  statusEmAberto(pedido: PedidoCliente): boolean {
+    return statusAtendimentoEmAberto(pedido.statusAtendimento);
   }
 
   formatCpf(value: string | null | undefined): string {

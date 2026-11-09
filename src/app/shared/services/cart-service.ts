@@ -1,11 +1,13 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Item } from '../types/item';
 import { CartItem } from '../types/cart-item';
+import { MessageService } from './message-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  private readonly messageService = inject(MessageService);
   private cart = signal<CartItem[]>([]);
   public cartItems = this.cart.asReadonly();
   public cartItemsCount = computed(() => this.cart().reduce((sum, item) => sum + item.quantity, 0));
@@ -23,12 +25,17 @@ export class CartService {
     );
 
     if (existingCartItem) {
+      const novaQuantidade = existingCartItem.quantity + 1;
+
       this.cart.set(
         currentItems.map((cartItem) =>
           cartItem.item.idItem === item.idItem
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            ? { ...cartItem, quantity: novaQuantidade }
             : cartItem,
         ),
+      );
+      this.messageService.openMessage(
+        `${item.nomeItem} — quantidade atualizada para ${novaQuantidade}.`,
       );
       return;
     }
@@ -39,6 +46,7 @@ export class CartService {
     };
 
     this.cart.set([...currentItems, newCartItem]);
+    this.messageService.openMessage(`${item.nomeItem} adicionado ao carrinho!`);
   }
 
   increaseQuantity(idItem: number): void {

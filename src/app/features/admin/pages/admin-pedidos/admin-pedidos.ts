@@ -1,5 +1,5 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ import { MessageService } from '../../../../shared/services/message-service';
 import { PessoaService } from '../../../../shared/services/pessoa-service';
 import { Atendimento } from '../../../../shared/types/atendimento';
 import { Pessoa } from '../../../../shared/types/pessoa';
+import { statusAtendimentoLabel } from '../../../../shared/utils/atendimento-status';
 
 @Component({
   selector: 'app-admin-pedidos',
@@ -28,6 +29,31 @@ export class AdminPedidos implements OnInit {
 
   readonly atendimentos = signal<Atendimento[]>([]);
   readonly pessoas = signal<Pessoa[]>([]);
+  readonly situacaoAtiva = signal<string>('todas');
+  readonly situacoes = computed(() => {
+    const codigos = new Set(
+      this.atendimentos()
+        .map((atendimento) => (atendimento.statusAtendimento ?? '').trim().toUpperCase())
+        .filter((codigo) => codigo.length > 0),
+    );
+    codigos.add('A');
+
+    return [...codigos].sort();
+  });
+  readonly atendimentosFiltrados = computed(() => {
+    const situacao = this.situacaoAtiva();
+
+    if (situacao === 'todas') {
+      return this.atendimentos();
+    }
+
+    return this.atendimentos().filter(
+      (atendimento) =>
+        (atendimento.statusAtendimento ?? '').trim().toUpperCase() === situacao,
+    );
+  });
+  readonly statusLabel = statusAtendimentoLabel;
+  readonly situacaoLabel = statusAtendimentoLabel;
   readonly displayedColumns = [
     'idAtendimento',
     'cliente',
@@ -45,6 +71,10 @@ export class AdminPedidos implements OnInit {
 
   openCreateDialog(): void {
     this.abrirDialogo({});
+  }
+
+  selecionarSituacao(codigo: string): void {
+    this.situacaoAtiva.set(codigo);
   }
 
   openEditDialog(atendimento: Atendimento): void {
