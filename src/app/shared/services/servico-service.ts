@@ -15,6 +15,10 @@ export class ServicoService {
     return this.http.get<Servico[]>(`${this.apiUrl}/Item/Servicos`);
   }
 
+  getServicoById(idItem: number): Observable<Servico> {
+    return this.http.get<Servico>(`${this.apiUrl}/Item/Servico/${idItem}`);
+  }
+
   createServico(servico: ServicoRequest): Observable<Servico> {
     return this.http.post<Servico>(`${this.apiUrl}/Item/Servico`, servico);
   }

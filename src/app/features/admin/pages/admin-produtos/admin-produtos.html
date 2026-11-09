@@ -1,4 +1,26 @@
+<form class="search-bar" [formGroup]="formBusca" (ngSubmit)="buscarPorId()">
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" class="search-field">
+    <mat-label>Buscar produto por ID</mat-label>
+    <input matInput type="number" min="1" step="1" formControlName="idItem" />
+  </mat-form-field>
+
+  <button matButton="filled" type="submit">Buscar</button>
+
+  @if (consultaAtiva()) {
+    <button matButton type="button" (click)="limparBusca()">Limpar</button>
+  }
+</form>
+
+@if (consultaAtiva()) {
+  <p class="search-info">Exibindo resultado para o ID {{ idConsultado() }}.</p>
+}
+
 <table mat-table [dataSource]="produtos()" class="">
+  <ng-container matColumnDef="idItem">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let produto">{{ produto.idItem }}</td>
+  </ng-container>
+
   <ng-container matColumnDef="nomeItem">
     <th mat-header-cell *matHeaderCellDef>Nome</th>
     <td mat-cell *matCellDef="let produto">{{ produto.nomeItem }}</td>
@@ -41,6 +63,10 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+@if (!carregando() && produtos().length === 0) {
+  <p class="empty-state">Nenhum produto encontrado.</p>
+}
 
 <div class="fab-container">
   <button matFab aria-label="Novo produto" (click)="openCreateDialog()">
