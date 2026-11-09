@@ -8,10 +8,11 @@ import {
   ClientEditDialog,
   ClientEditDialogData,
 } from '../../components/client-edit-dialog/client-edit-dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-admin-clientes',
-  imports: [MatTableModule, MatIconModule],
+  imports: [MatTableModule, MatIconModule, MatButtonModule],
   templateUrl: './admin-clientes.html',
   styleUrl: './admin-clientes.css',
 })

@@ -5,5 +5,8 @@
     <span class="item-price"
       >R$ {{ (item.tipoItem === 'S' ? item.preco : item.precoVenda) | number: '1.2-2' }}</span
     >
+    <button class="add-to-cart-button" type="button" (click)="addToCart()">
+      Adicionar ao carrinho
+    </button>
   </div>
 </div>

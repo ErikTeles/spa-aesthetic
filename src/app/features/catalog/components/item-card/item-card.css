@@ -2,7 +2,31 @@
   background-color: var(--color-secondary);
   width: 100%;
   box-shadow: 0px 4px 24px 0px #780bf71f;
-  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .item-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 32px 0px #780bf740;
+  }
+}
+
+.item-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0px 12px 32px 0px #780bf740;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item-card {
+    transition: none;
+  }
+
+  .item-card:hover,
+  .item-card:focus-within {
+    transform: none;
+  }
 }
 
 .item-image {
@@ -26,5 +50,39 @@
 
 .item-price {
   font-weight: var(--font-medium);
-  font-size: (--font-size-l);
+  font-size: var(--font-size-l);
+}
+
+.add-to-cart-button {
+  margin-top: var(--gap-s);
+  width: 100%;
+  padding: 12px var(--padding-s);
+  background: linear-gradient(135deg, var(--color-quaternary), #6d8f6b);
+  color: var(--text-secondary);
+  font-family: var(--font-text);
+  font-weight: var(--font-medium);
+  font-size: var(--font-size-s);
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.add-to-cart-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.08);
+}
+
+.add-to-cart-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+  filter: brightness(0.95);
+}
+
+.add-to-cart-button:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-button-focus);
 }
