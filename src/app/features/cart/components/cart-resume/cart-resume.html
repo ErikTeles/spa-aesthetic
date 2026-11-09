@@ -1,5 +1,24 @@
-<aside>
-  <h3>Resumo do Carrinho</h3>
-  <p>Total de Itens: 0</p>
-  <p>Valor Total: R$ 0,00</p>
+<aside class="cart-resume" aria-labelledby="cart-resume-title">
+  <h2 id="cart-resume-title">Resumo do Carrinho</h2>
+
+  <dl class="cart-resume-lines">
+    <div class="resume-line">
+      <dt>Total de itens</dt>
+      <dd>{{ cartService.cartItemsCount() }}</dd>
+    </div>
+
+    <div class="resume-line total-line">
+      <dt>Valor total</dt>
+      <dd aria-live="polite">R$ {{ cartService.cartTotal() | number: '1.2-2' }}</dd>
+    </div>
+  </dl>
+
+  <button
+    type="button"
+    class="checkout-button"
+    [disabled]="cartService.cartItems().length === 0"
+    (click)="openCheckout()"
+  >
+    Finalizar compra
+  </button>
 </aside>

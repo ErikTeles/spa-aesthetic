@@ -1,3 +1,13 @@
 .cart {
-  margin: 0 var(--margin-l);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  align-items: start;
+  gap: var(--gap-l);
+  margin: var(--margin-l);
+}
+
+@media (max-width: 1024px) {
+  .cart {
+    grid-template-columns: 1fr;
+  }
 }

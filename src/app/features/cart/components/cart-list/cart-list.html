@@ -13,6 +13,8 @@
     @for (cartItem of cartService.cartItems(); track cartItem.item.idItem) {
       <app-cart-item-row
         [item]="cartItem"
+        (increaseQuantity)="cartService.increaseQuantity(cartItem.item.idItem)"
+        (decreaseQuantity)="cartService.decreaseQuantity(cartItem.item.idItem)"
         (removeItem)="cartService.removeItemFromCart(cartItem.item)"
       />
     } @empty {

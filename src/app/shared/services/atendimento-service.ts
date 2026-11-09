@@ -8,6 +8,7 @@ import {
   AtendimentoItemRequest,
   AtendimentoRequest,
 } from '../types/atendimento';
+import { CheckoutRequest } from '../types/checkout';
 
 @Injectable({
   providedIn: 'root',
@@ -48,5 +49,9 @@ export class AtendimentoService {
 
   deleteAtendimentoItem(idAtendimento: number, idItem: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/Atendimento/${idAtendimento}/Item/${idItem}`);
+  }
+
+  checkout(checkout: CheckoutRequest): Observable<Atendimento> {
+    return this.http.post<Atendimento>(`${this.apiUrl}/Atendimento/Checkout`, checkout);
   }
 }

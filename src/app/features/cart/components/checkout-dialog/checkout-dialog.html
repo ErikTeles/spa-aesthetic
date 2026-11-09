@@ -1,0 +1,91 @@
+<h2 mat-dialog-title>Finalizar compra</h2>
+
+<mat-dialog-content class="mat-typography">
+  <section class="checkout-section">
+    <h3>Seu pedido</h3>
+
+    <ul class="checkout-items">
+      @for (cartItem of cartService.cartItems(); track cartItem.item.idItem) {
+        <li class="checkout-item">
+          <span class="checkout-item-name">{{ cartItem.item.nomeItem }}</span>
+          <span class="checkout-item-quantity">{{ cartItem.quantity }}x</span>
+          <span class="checkout-item-subtotal">
+            R$
+            {{ cartService.getUnitPrice(cartItem.item) * cartItem.quantity | number: '1.2-2' }}
+          </span>
+        </li>
+      }
+    </ul>
+
+    <p class="checkout-total">
+      <span>Total</span>
+      <strong>R$ {{ cartService.cartTotal() | number: '1.2-2' }}</strong>
+    </p>
+  </section>
+
+  <section class="checkout-section">
+    <h3>Cliente</h3>
+
+    @if (customer(); as pessoa) {
+      <div class="checkout-customer">
+        <div class="checkout-customer-info">
+          <span class="checkout-customer-name">{{ pessoa.nome }}</span>
+          <span class="checkout-customer-document">CPF {{ formatCpf(pessoa.cpf) }}</span>
+        </div>
+        <button matButton type="button" (click)="trocarCliente()">Trocar</button>
+      </div>
+    } @else {
+      <p class="checkout-hint">Informe seu CPF para localizar seu cadastro.</p>
+
+      <form [formGroup]="formIdentificacao" (ngSubmit)="buscarCliente()" class="checkout-cpf">
+        <mat-form-field>
+          <mat-label>CPF</mat-label>
+          <input
+            matInput
+            appCpfMask
+            placeholder="000.000.000-00"
+            formControlName="cpf"
+            inputmode="numeric"
+            maxlength="14"
+            required
+          />
+        </mat-form-field>
+
+        <button matButton="filled" type="submit" [disabled]="identificando()">
+          {{ identificando() ? 'Buscando...' : 'Buscar' }}
+        </button>
+      </form>
+
+      <p class="checkout-hint">
+        Ainda não tem cadastro?
+        <a mat-dialog-close routerLink="/cadastro">Cadastre-se</a>
+      </p>
+    }
+  </section>
+
+  <section class="checkout-section">
+    <h3>Profissional responsável</h3>
+
+    <form [formGroup]="formCheckout" class="checkout-professional">
+      <mat-form-field>
+        <mat-label>Profissional</mat-label>
+        <mat-select formControlName="idFuncionario" required>
+          @for (funcionario of funcionarios(); track funcionario.idFuncionario) {
+            <mat-option [value]="funcionario.idFuncionario">
+              {{ funcionario.nome }} — {{ funcionario.cargo }}
+            </mat-option>
+          } @empty {
+            <mat-option disabled>Nenhum profissional disponível</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </section>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button matButton type="button" mat-dialog-close [disabled]="enviando()">Cancelar</button>
+  <button matButton="filled" type="button" [disabled]="enviando()" (click)="confirmar()">
+    {{ enviando() ? 'Registrando...' : 'Confirmar compra' }}
+  </button>
+</mat-dialog-actions>

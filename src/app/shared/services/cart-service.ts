@@ -9,6 +9,12 @@ export class CartService {
   private cart = signal<CartItem[]>([]);
   public cartItems = this.cart.asReadonly();
   public cartItemsCount = computed(() => this.cart().reduce((sum, item) => sum + item.quantity, 0));
+  public cartTotal = computed(() =>
+    this.cart().reduce(
+      (sum, cartItem) => sum + this.getUnitPrice(cartItem.item) * cartItem.quantity,
+      0,
+    ),
+  );
 
   addToCart(item: Item): void {
     const currentItems = this.cart();
@@ -17,15 +23,13 @@ export class CartService {
     );
 
     if (existingCartItem) {
-      const updatedItems = currentItems.map((cartItem) => {
-        if (cartItem.item.idItem === item.idItem) {
-          return { ...cartItem, quantity: cartItem.quantity + 1 };
-        }
-
-        return cartItem;
-      });
-
-      this.cart.set(updatedItems);
+      this.cart.set(
+        currentItems.map((cartItem) =>
+          cartItem.item.idItem === item.idItem
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem,
+        ),
+      );
       return;
     }
 
@@ -37,6 +41,14 @@ export class CartService {
     this.cart.set([...currentItems, newCartItem]);
   }
 
+  increaseQuantity(idItem: number): void {
+    this.updateQuantity(idItem, (quantity) => quantity + 1);
+  }
+
+  decreaseQuantity(idItem: number): void {
+    this.updateQuantity(idItem, (quantity) => Math.max(1, quantity - 1));
+  }
+
   removeItemFromCart(item: Item): void {
     const currentItems = this.cart();
     const updatedItems = currentItems.filter((cartItem) => cartItem.item.idItem !== item.idItem);
@@ -46,5 +58,19 @@ export class CartService {
 
   removeAllItemsFromCart(): void {
     this.cart.set([]);
+  }
+
+  getUnitPrice(item: Item): number {
+    return item.tipoItem === 'S' ? item.preco : (item.precoVenda ?? item.preco);
+  }
+
+  private updateQuantity(idItem: number, update: (quantity: number) => number): void {
+    this.cart.update((currentItems) =>
+      currentItems.map((cartItem) =>
+        cartItem.item.idItem === idItem
+          ? { ...cartItem, quantity: update(cartItem.quantity) }
+          : cartItem,
+      ),
+    );
   }
 }

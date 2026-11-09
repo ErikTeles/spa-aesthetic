@@ -1,25 +1,42 @@
 <div class="cart-item">
-  <img src="https://placehold.co/32x32" alt="Produto" class="cart-item-image" />
+  <img src="https://placehold.co/32x32" alt="" class="cart-item-image" />
   <div class="cart-item-info">
     <div class="cart-item-name">{{ item().item.nomeItem }}</div>
     <div class="cart-item-description">{{ item().item.descricaoItem }}</div>
   </div>
-  <div class="cart-item-price">
-    R$
-    {{
-      (item().item.tipoItem === 'S' ? item().item.preco : item().item.precoVenda) | number: '1.2-2'
-    }}
-  </div>
+  <div class="cart-item-price">R$ {{ unitPrice() | number: '1.2-2' }}</div>
   <div class="cart-item-quantity">
     <span>Quantidade:</span>
     <div class="cart-item-quantity-actions">
-      <img src="icons/minus.svg" />
+      <button
+        type="button"
+        class="cart-item-quantity-button"
+        [disabled]="!canDecrease()"
+        (click)="decreaseQuantity.emit()"
+        aria-label="Diminuir quantidade"
+      >
+        <img src="icons/minus.svg" alt="" />
+      </button>
       <span>{{ item().quantity }}</span>
-      <img src="icons/plus.svg" />
+      <button
+        type="button"
+        class="cart-item-quantity-button"
+        (click)="increaseQuantity.emit()"
+        aria-label="Aumentar quantidade"
+      >
+        <img src="icons/plus.svg" alt="" />
+      </button>
     </div>
   </div>
   <div class="cart-item-delete">
     <span>Excluir</span>
-    <img src="/icons/delete.svg" (click)="removeItem.emit()" />
+    <button
+      type="button"
+      class="cart-item-delete-button"
+      (click)="removeItem.emit()"
+      aria-label="Excluir item do carrinho"
+    >
+      <img src="/icons/delete.svg" alt="" />
+    </button>
   </div>
 </div>

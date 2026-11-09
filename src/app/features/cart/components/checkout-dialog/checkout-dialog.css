@@ -1,0 +1,122 @@
+.checkout-section {
+  padding: var(--padding-s) 0;
+  border-bottom: 1px solid var(--color-outline);
+}
+
+.checkout-section:last-child {
+  border-bottom: none;
+}
+
+.checkout-section h3 {
+  margin: 0 0 var(--margin-s);
+  font-size: var(--font-size-s);
+  font-weight: var(--font-bold);
+  color: var(--text-tertiary);
+}
+
+.checkout-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checkout-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--gap-s);
+  font-size: var(--font-size-s);
+}
+
+.checkout-item-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.checkout-item-quantity {
+  color: var(--color-icon);
+}
+
+.checkout-item-subtotal {
+  font-weight: var(--font-medium);
+}
+
+.checkout-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--gap-s);
+  margin: var(--margin-s) 0 0;
+  padding-top: var(--margin-s);
+  border-top: 1px solid var(--color-outline);
+  font-size: var(--font-size-m);
+}
+
+.checkout-hint {
+  margin: 0 0 var(--margin-s);
+  color: var(--color-icon);
+  font-size: var(--font-size-xs);
+}
+
+.checkout-hint a {
+  font-weight: var(--font-medium);
+  color: var(--color-quaternary);
+}
+
+.checkout-cpf {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-s);
+}
+
+.checkout-cpf mat-form-field {
+  flex: 1;
+}
+
+.checkout-professional mat-form-field {
+  width: 100%;
+}
+
+.checkout-customer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-s);
+}
+
+.checkout-customer-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+}
+
+.checkout-customer-name {
+  font-weight: var(--font-medium);
+}
+
+.checkout-customer-document {
+  font-size: var(--font-size-xs);
+  color: var(--color-icon);
+}
+
+@media (max-width: 640px) {
+  .checkout-cpf {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .checkout-item {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .checkout-item-subtotal {
+    grid-column: 1 / -1;
+    justify-self: end;
+    font-size: var(--font-size-xs);
+    color: var(--color-icon);
+  }
+}

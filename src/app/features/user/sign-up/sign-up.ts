@@ -11,12 +11,13 @@ import { MatCardModule } from '@angular/material/card';
 import { CepMask } from '../../../shared/directives/cep-mask';
 import { PessoaService } from '../../../shared/services/pessoa-service';
 import { EnderecoService } from '../../../shared/services/endereco-service';
+import { CustomerSessionService } from '../../../shared/services/customer-session-service';
 import { Pessoa } from '../../../shared/types/pessoa';
 import { Endereco } from '../../../shared/types/endereco';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { formatDate } from '@angular/common';
-import { concatMap } from 'rxjs';
+import { concatMap, map } from 'rxjs';
 import { MessageService } from '../../../shared/services/message-service';
 
 @Component({
@@ -39,6 +40,7 @@ import { MessageService } from '../../../shared/services/message-service';
 export class SignUp {
   private pessoaService = inject(PessoaService);
   private enderecoService = inject(EnderecoService);
+  private customerSession = inject(CustomerSessionService);
   private messageService = inject(MessageService);
   private router = inject(Router);
 
@@ -87,11 +89,12 @@ export class SignUp {
             complemento: enderecoValue.complemento ?? '',
           };
 
-          return this.enderecoService.createEndereco(enderecoData);
+          return this.enderecoService.createEndereco(enderecoData).pipe(map(() => pessoaResponse));
         }),
       )
       .subscribe({
-        next: () => {
+        next: (pessoa) => {
+          this.customerSession.setCustomer(pessoa);
           this.messageService.openMessage('Cadastro realizado com sucesso!');
           this.router.navigate(['/']);
         },
